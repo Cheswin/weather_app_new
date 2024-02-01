@@ -11,6 +11,19 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String greeting = "";
+    int hours = DateTime.now().hour;
+
+    if (hours >= 1 && hours <= 12) {
+      greeting = "Good Morning";
+    } else if (hours >= 12 && hours <= 16) {
+      greeting = "Good Afternoon";
+    } else if (hours >= 16 && hours <= 21) {
+      greeting = "Good Evening";
+    } else if (hours >= 21 && hours <= 24) {
+      greeting = "Good Night";
+    }
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.black,
@@ -74,8 +87,9 @@ class HomeScreen extends StatelessWidget {
                         SizedBox(
                           height: 8,
                         ),
+
                         Text(
-                          "Good Morning",
+                          greeting,
                           style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -85,8 +99,8 @@ class HomeScreen extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           child: Center(
-                            child: Image.network("http://openweathermap.org/img/wn/${state.weather.weatherIcon}@4x.png")
-                            ),
+                              child: Image.network(
+                                  "http://openweathermap.org/img/wn/${state.weather.weatherIcon}@4x.png")),
                         ),
                         Center(
                           child: Text(
@@ -111,7 +125,9 @@ class HomeScreen extends StatelessWidget {
                         ),
                         Center(
                           child: Text(
-                            DateFormat('EEEE dd .').add_jm().format(state.weather.date!),
+                            DateFormat('EEEE dd .')
+                                .add_jm()
+                                .format(state.weather.date!),
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
@@ -143,7 +159,9 @@ class HomeScreen extends StatelessWidget {
                                       height: 3,
                                     ),
                                     Text(
-                                      DateFormat().add_jm().format(state.weather.sunrise!),
+                                      DateFormat()
+                                          .add_jm()
+                                          .format(state.weather.sunrise!),
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,
@@ -161,19 +179,21 @@ class HomeScreen extends StatelessWidget {
                                 ),
                                 Column(
                                   children: [
-                                  const  Text(
+                                    const Text(
                                       "Sunset",
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 15),
                                     ),
-                                   const SizedBox(
+                                    const SizedBox(
                                       height: 3,
                                     ),
                                     Text(
-                                       DateFormat().add_jm().format(state.weather.sunset!),
-                                      style:const TextStyle(
+                                      DateFormat()
+                                          .add_jm()
+                                          .format(state.weather.sunset!),
+                                      style: const TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 15),
@@ -184,7 +204,7 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                       const Padding(
+                        const Padding(
                           padding: const EdgeInsets.symmetric(vertical: 5),
                           child: Divider(
                             color: Colors.blueGrey,
@@ -199,19 +219,19 @@ class HomeScreen extends StatelessWidget {
                                   'assets/hot cel.png',
                                   scale: 50,
                                 ),
-                              const  SizedBox(
+                                const SizedBox(
                                   width: 5,
                                 ),
                                 Column(
                                   children: [
-                                  const  Text(
+                                    const Text(
                                       "Temp max",
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 15),
                                     ),
-                                   const SizedBox(
+                                    const SizedBox(
                                       height: 3,
                                     ),
                                     Text(
@@ -247,7 +267,7 @@ class HomeScreen extends StatelessWidget {
                                       height: 3,
                                     ),
                                     Text(
-                                     "${state.weather.tempMin?.celsius?.round()}°c",
+                                      "${state.weather.tempMin?.celsius?.round()}°c",
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,
